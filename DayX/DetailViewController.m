@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UIButton *clearButton;
 
 @end
 
@@ -32,6 +33,12 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (IBAction)clearButtonPressed:(id)sender
+{
+    self.textField.text = @"";
+    self.textView.text = @"";
 }
 
 /*
