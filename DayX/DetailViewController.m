@@ -8,12 +8,17 @@
 
 #import "DetailViewController.h"
 
+static NSString *ideaTitleKey = @"ideaTitle";
+static NSString *ideaDescriptionKey = @"ideaDescription";
+static NSString *entryDictionaryKey = @"entryDictionary";
+
 @interface DetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIButton *clearButton;
 @property (strong, nonatomic) UIBarButtonItem * doneButton;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
 
@@ -31,11 +36,20 @@
     self.textField.delegate = self;
     self.textView.backgroundColor = [UIColor colorWithRed:(227.0 / 255.0) green:(182.0 / 255.0) blue:(216.0 / 255.0) alpha:1.0];
     self.textView.delegate = self;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self updateWithDictionary:[defaults objectForKey:entryDictionaryKey]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)updateWithDictionary:(NSDictionary *)dictionary
+{
+    self.textField.text = dictionary[ideaTitleKey];
+    self.textView.text = dictionary[ideaDescriptionKey];
 }
 
 - (void)hideKeyboard
@@ -59,12 +73,14 @@
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.doneButton.tintColor = [UIColor grayColor];
+    [self save];
     return YES;
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
     self.doneButton.tintColor = [UIColor grayColor];
+    [self save];
     return YES;
 }
 
@@ -79,6 +95,18 @@
 {
     self.textField.text = @"";
     self.textView.text = @"";
+    [self save];
+}
+
+- (void)save
+{
+    NSMutableDictionary *entry = [NSMutableDictionary new];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [entry setObject:self.textField.text forKey:ideaTitleKey];
+    [entry setObject:self.textView.text forKey:ideaDescriptionKey];
+    
+    [defaults setObject:entry forKey:entryDictionaryKey];
 }
 
 /*
