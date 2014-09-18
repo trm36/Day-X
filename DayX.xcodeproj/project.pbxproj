@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3464EC7D19C9228800A8D893 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464EC7B19C9228800A8D893 /* DetailViewController.m */; };
 		3464EC7E19C9228800A8D893 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3464EC7C19C9228800A8D893 /* DetailViewController.xib */; };
+		3464EC8519CA852000A8D893 /* clearIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3464EC8419CA852000A8D893 /* clearIcon.png */; };
 		711A506A19388095005642EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506919388095005642EF /* Foundation.framework */; };
 		711A506C19388095005642EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506B19388095005642EF /* CoreGraphics.framework */; };
 		711A506E19388095005642EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506D19388095005642EF /* UIKit.framework */; };
@@ -37,6 +38,7 @@
 		3464EC7A19C9228800A8D893 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		3464EC7B19C9228800A8D893 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		3464EC7C19C9228800A8D893 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		3464EC8419CA852000A8D893 /* clearIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearIcon.png; sourceTree = "<group>"; };
 		711A506619388095005642EF /* DayX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711A506919388095005642EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		711A506B19388095005642EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +117,7 @@
 				3464EC7A19C9228800A8D893 /* DetailViewController.h */,
 				3464EC7B19C9228800A8D893 /* DetailViewController.m */,
 				3464EC7C19C9228800A8D893 /* DetailViewController.xib */,
+				3464EC8419CA852000A8D893 /* clearIcon.png */,
 				711A507819388095005642EF /* DXAppDelegate.h */,
 				711A507919388095005642EF /* DXAppDelegate.m */,
 				711A507B19388095005642EF /* Images.xcassets */,
@@ -228,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3464EC8519CA852000A8D893 /* clearIcon.png in Resources */,
 				711A507419388095005642EF /* InfoPlist.strings in Resources */,
 				3464EC7E19C9228800A8D893 /* DetailViewController.xib in Resources */,
 				711A507C19388095005642EF /* Images.xcassets in Resources */,
