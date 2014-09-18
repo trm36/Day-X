@@ -19,6 +19,7 @@ static NSString *entryDictionaryKey = @"entryDictionary";
 @property (strong, nonatomic) IBOutlet UIButton *clearButton;
 @property (strong, nonatomic) UIBarButtonItem * doneButton;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) IBOutlet UILabel *charCountLabel;
 
 @end
 
@@ -39,6 +40,7 @@ static NSString *entryDictionaryKey = @"entryDictionary";
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self updateWithDictionary:[defaults objectForKey:entryDictionaryKey]];
+    self.charCountLabel.text = [NSString stringWithFormat:@"%ld", self.textView.text.length];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,20 +66,7 @@ static NSString *entryDictionaryKey = @"entryDictionary";
     return YES;
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    self.doneButton.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
-    return YES;
-}
-
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    self.doneButton.tintColor = [UIColor grayColor];
-    [self save];
-    return YES;
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
     self.doneButton.tintColor = [UIColor grayColor];
     [self save];
@@ -86,8 +75,26 @@ static NSString *entryDictionaryKey = @"entryDictionary";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    [self hideKeyboard];
     self.doneButton.tintColor = [UIColor grayColor];
+    return YES;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    self.doneButton.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.charCountLabel.text = [NSString stringWithFormat:@"%ld", textView.text.length];
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    self.doneButton.tintColor = [UIColor grayColor];
+    [self save];
     return YES;
 }
 
