@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIButton *clearButton;
+@property (strong, nonatomic) UIBarButtonItem * doneButton;
 
 @end
 
@@ -22,8 +23,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Day X";
+    
+    self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(hideKeyboard)];
+    self.doneButton.tintColor = [UIColor grayColor];
+    self.navigationItem.rightBarButtonItem = self.doneButton;
+    
     self.textField.delegate = self;
     self.textView.backgroundColor = [UIColor colorWithRed:(227.0 / 255.0) green:(182.0 / 255.0) blue:(216.0 / 255.0) alpha:1.0];
+    self.textView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,9 +38,40 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)hideKeyboard
+{
+    [self.textField resignFirstResponder];
+    [self.textView resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    self.doneButton.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+    return YES;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    self.doneButton.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    self.doneButton.tintColor = [UIColor grayColor];
+    return YES;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    self.doneButton.tintColor = [UIColor grayColor];
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    self.doneButton.tintColor = [UIColor grayColor];
     return YES;
 }
 
