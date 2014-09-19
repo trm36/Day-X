@@ -11,6 +11,7 @@
 static NSString *ideaTitleKey = @"ideaTitle";
 static NSString *ideaDescriptionKey = @"ideaDescription";
 static NSString *entryDictionaryKey = @"entryDictionary";
+static NSString *saveDateKey = @"saveDate";
 
 @interface DetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
@@ -20,6 +21,7 @@ static NSString *entryDictionaryKey = @"entryDictionary";
 @property (strong, nonatomic) UIBarButtonItem * doneButton;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UILabel *charCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *savedDateLabel;
 
 @end
 
@@ -40,7 +42,7 @@ static NSString *entryDictionaryKey = @"entryDictionary";
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self updateWithDictionary:[defaults objectForKey:entryDictionaryKey]];
-    self.charCountLabel.text = [NSString stringWithFormat:@"%ld", self.textView.text.length];
+    [self updateCharCount];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,6 +54,7 @@ static NSString *entryDictionaryKey = @"entryDictionary";
 {
     self.textField.text = dictionary[ideaTitleKey];
     self.textView.text = dictionary[ideaDescriptionKey];
+    self.savedDateLabel.text = [@"Date Last Saved: " stringByAppendingString:dictionary[saveDateKey]];
 }
 
 - (void)hideKeyboard
@@ -88,7 +91,7 @@ static NSString *entryDictionaryKey = @"entryDictionary";
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    self.charCountLabel.text = [NSString stringWithFormat:@"%ld", textView.text.length];
+    [self updateCharCount];
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
@@ -105,15 +108,25 @@ static NSString *entryDictionaryKey = @"entryDictionary";
     [self save];
 }
 
+- (void)updateCharCount
+{
+    self.charCountLabel.text = [NSString stringWithFormat:@"%ld", self.textView.text.length];
+}
+
 - (void)save
 {
     NSMutableDictionary *entry = [NSMutableDictionary new];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+
+    [entry setObject:dateString forKey:saveDateKey];
     [entry setObject:self.textField.text forKey:ideaTitleKey];
     [entry setObject:self.textView.text forKey:ideaDescriptionKey];
     
     [defaults setObject:entry forKey:entryDictionaryKey];
+    
+    self.savedDateLabel.text = [@"Date Last Saved: " stringByAppendingString:dateString];
+    
 }
 
 /*
