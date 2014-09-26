@@ -7,19 +7,14 @@
 //
 
 #import "DetailViewController.h"
-
-static NSString *ideaTitleKey = @"ideaTitle";
-static NSString *ideaDescriptionKey = @"ideaDescription";
-static NSString *entryDictionaryKey = @"entryDictionary";
-static NSString *saveDateKey = @"saveDate";
+#import "ESEntryController.h"
 
 @interface DetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIButton *clearButton;
-@property (strong, nonatomic) UIBarButtonItem * doneButton;
-@property (strong, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) UIBarButtonItem * saveButton;
 @property (strong, nonatomic) IBOutlet UILabel *charCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *savedDateLabel;
 
@@ -32,30 +27,44 @@ static NSString *saveDateKey = @"saveDate";
     // Do any additional setup after loading the view from its nib.
     self.title = @"Day X";
     
-    self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(hideKeyboard)];
-    self.doneButton.tintColor = [UIColor grayColor];
-    self.navigationItem.rightBarButtonItem = self.doneButton;
+    self.saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
+    self.navigationItem.rightBarButtonItem = self.saveButton;
     
     self.textField.delegate = self;
-    self.textView.backgroundColor = [UIColor colorWithRed:(227.0 / 255.0) green:(182.0 / 255.0) blue:(216.0 / 255.0) alpha:1.0];
+    //self.textView.backgroundColor = [UIColor colorWithRed:(227.0 / 255.0) green:(182.0 / 255.0) blue:(216.0 / 255.0) alpha:1.0];
     self.textView.delegate = self;
+    if (self.dictionary != nil)
+    {
+        [self updateWithDictionary];
+    }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [self updateWithDictionary:[defaults objectForKey:entryDictionaryKey]];
     [self updateCharCount];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary
+/*
+ * Updates view with contents from a dictionary
+ * More specifically the textField
+ * More specifically the textView
+ * More specifically the date Label
+ */
+
+- (void)updateWithDictionary
 {
-    self.textField.text = dictionary[ideaTitleKey];
-    self.textView.text = dictionary[ideaDescriptionKey];
-    self.savedDateLabel.text = [@"Date Last Saved: " stringByAppendingString:dictionary[saveDateKey]];
+    self.textField.text = self.dictionary[ideaTitleKey];
+    self.textView.text = self.dictionary[ideaDescriptionKey];
+    self.savedDateLabel.text = [@"Date Last Saved: " stringByAppendingString:self.dictionary[saveDateKey]];
 }
+
+/*
+ * method to resign the keyboard from either the textField or textView,
+ * doesn't matter if you are in one or the other, no error or exception
+ */
 
 - (void)hideKeyboard
 {
@@ -63,29 +72,9 @@ static NSString *saveDateKey = @"saveDate";
     [self.textView resignFirstResponder];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    self.doneButton.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
-    return YES;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    self.doneButton.tintColor = [UIColor grayColor];
-    [self save];
-    return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self hideKeyboard];
-    self.doneButton.tintColor = [UIColor grayColor];
-    return YES;
-}
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    self.doneButton.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
     return YES;
 }
 
@@ -96,34 +85,54 @@ static NSString *saveDateKey = @"saveDate";
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-    self.doneButton.tintColor = [UIColor grayColor];
-    [self save];
+    [self hideKeyboard];
     return YES;
 }
+
+/*
+ * function called when clear button is pressed and clears out the app title and description
+ * but does not save
+ */
 
 - (IBAction)clearButtonPressed:(id)sender
 {
     self.textField.text = @"";
     self.textView.text = @"";
-    [self save];
 }
+
+/*
+ * function to update character count of the text view
+ */
 
 - (void)updateCharCount
 {
     self.charCountLabel.text = [NSString stringWithFormat:@"%ld", self.textView.text.length];
 }
 
+/* 
+ * function that saves the all information in text view and field and updates save date which all get
+ * stored in sharedInstance as a single dictionary.
+ */
+
 - (void)save
 {
-    NSMutableDictionary *entry = [NSMutableDictionary new];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-
-    [entry setObject:dateString forKey:saveDateKey];
-    [entry setObject:self.textField.text forKey:ideaTitleKey];
-    [entry setObject:self.textView.text forKey:ideaDescriptionKey];
+    [self hideKeyboard];
     
-    [defaults setObject:entry forKey:entryDictionaryKey];
+    NSMutableDictionary *newSaveDictionary = [NSMutableDictionary new];
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+    
+    [newSaveDictionary setObject:self.textField.text forKey:ideaTitleKey];
+    [newSaveDictionary setObject:self.textView.text forKey:ideaDescriptionKey];
+    [newSaveDictionary setObject:dateString forKey:saveDateKey];
+    
+    if (self.dictionary == nil)
+    {
+        [[ESEntryController sharedInstance] addEntry:newSaveDictionary];
+    }
+    else
+    {
+        [[ESEntryController sharedInstance] replaceEntry:self.dictionary withEntry:newSaveDictionary];
+    }
     
     self.savedDateLabel.text = [@"Date Last Saved: " stringByAppendingString:dateString];
     

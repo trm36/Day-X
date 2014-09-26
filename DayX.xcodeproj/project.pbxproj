@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		344AFD7619CBC8A600ED36BC /* ESEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344AFD7519CBC8A600ED36BC /* ESEntryController.m */; };
+		344AFD7919CBC8F600ED36BC /* DXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344AFD7819CBC8F600ED36BC /* DXListViewController.m */; };
+		344AFD7C19CBC96300ED36BC /* DXListTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 344AFD7B19CBC96300ED36BC /* DXListTableViewDataSource.m */; };
 		3464EC7D19C9228800A8D893 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464EC7B19C9228800A8D893 /* DetailViewController.m */; };
 		3464EC7E19C9228800A8D893 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3464EC7C19C9228800A8D893 /* DetailViewController.xib */; };
 		3464EC8519CA852000A8D893 /* clearIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3464EC8419CA852000A8D893 /* clearIcon.png */; };
@@ -35,6 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		344AFD7419CBC8A600ED36BC /* ESEntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESEntryController.h; sourceTree = "<group>"; };
+		344AFD7519CBC8A600ED36BC /* ESEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESEntryController.m; sourceTree = "<group>"; };
+		344AFD7719CBC8F600ED36BC /* DXListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXListViewController.h; sourceTree = "<group>"; };
+		344AFD7819CBC8F600ED36BC /* DXListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXListViewController.m; sourceTree = "<group>"; };
+		344AFD7A19CBC96300ED36BC /* DXListTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXListTableViewDataSource.h; sourceTree = "<group>"; };
+		344AFD7B19CBC96300ED36BC /* DXListTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXListTableViewDataSource.m; sourceTree = "<group>"; };
 		3464EC7A19C9228800A8D893 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		3464EC7B19C9228800A8D893 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		3464EC7C19C9228800A8D893 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
@@ -114,6 +123,12 @@
 		711A506F19388095005642EF /* DayX */ = {
 			isa = PBXGroup;
 			children = (
+				344AFD7419CBC8A600ED36BC /* ESEntryController.h */,
+				344AFD7519CBC8A600ED36BC /* ESEntryController.m */,
+				344AFD7719CBC8F600ED36BC /* DXListViewController.h */,
+				344AFD7819CBC8F600ED36BC /* DXListViewController.m */,
+				344AFD7A19CBC96300ED36BC /* DXListTableViewDataSource.h */,
+				344AFD7B19CBC96300ED36BC /* DXListTableViewDataSource.m */,
 				3464EC7A19C9228800A8D893 /* DetailViewController.h */,
 				3464EC7B19C9228800A8D893 /* DetailViewController.m */,
 				3464EC7C19C9228800A8D893 /* DetailViewController.xib */,
@@ -253,8 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				344AFD7619CBC8A600ED36BC /* ESEntryController.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,
 				711A507619388095005642EF /* main.m in Sources */,
+				344AFD7919CBC8F600ED36BC /* DXListViewController.m in Sources */,
+				344AFD7C19CBC96300ED36BC /* DXListTableViewDataSource.m in Sources */,
 				3464EC7D19C9228800A8D893 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

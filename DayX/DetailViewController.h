@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+static NSString *ideaTitleKey = @"ideaTitle";
+static NSString *ideaDescriptionKey = @"ideaDescription";
+static NSString *entryDictionaryKey = @"entryDictionary";
+static NSString *saveDateKey = @"saveDate";
+
 @interface DetailViewController : UIViewController
+
+@property (strong, nonatomic) NSDictionary *dictionary;
+- (void)updateWithDictionary;
 
 @end
