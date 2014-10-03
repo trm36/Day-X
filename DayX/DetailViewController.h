@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Entry.h"
 
 static NSString *ideaTitleKey = @"ideaTitle";
 static NSString *ideaDescriptionKey = @"ideaDescription";
@@ -15,7 +16,8 @@ static NSString *saveDateKey = @"saveDate";
 
 @interface DetailViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *dictionary;
-- (void)updateWithDictionary;
+@property (strong, nonatomic) Entry *entry;
+
+- (void)updateWithEntry;
 
 @end

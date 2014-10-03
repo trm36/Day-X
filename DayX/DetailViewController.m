@@ -33,9 +33,9 @@
     self.textField.delegate = self;
     //self.textView.backgroundColor = [UIColor colorWithRed:(227.0 / 255.0) green:(182.0 / 255.0) blue:(216.0 / 255.0) alpha:1.0];
     self.textView.delegate = self;
-    if (self.dictionary != nil)
+    if (self.entry != nil)
     {
-        [self updateWithDictionary];
+        [self updateWithEntry];
     }
     
     [self updateCharCount];
@@ -54,11 +54,11 @@
  * More specifically the date Label
  */
 
-- (void)updateWithDictionary
+- (void)updateWithEntry
 {
-    self.textField.text = self.dictionary[ideaTitleKey];
-    self.textView.text = self.dictionary[ideaDescriptionKey];
-    self.savedDateLabel.text = [@"Date Last Saved: " stringByAppendingString:self.dictionary[saveDateKey]];
+    self.textField.text = self.entry.title;
+    self.textView.text = self.entry.text;
+    self.savedDateLabel.text = [@"Date Last Saved: " stringByAppendingString:self.entry.date];
 }
 
 /*
@@ -118,20 +118,18 @@
 {
     [self hideKeyboard];
     
-    NSMutableDictionary *newSaveDictionary = [NSMutableDictionary new];
     NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
     
-    [newSaveDictionary setObject:self.textField.text forKey:ideaTitleKey];
-    [newSaveDictionary setObject:self.textView.text forKey:ideaDescriptionKey];
-    [newSaveDictionary setObject:dateString forKey:saveDateKey];
-    
-    if (self.dictionary == nil)
+    if (self.entry == nil)
     {
-        [[ESEntryController sharedInstance] addEntry:newSaveDictionary];
+        [[ESEntryController sharedInstance] addEntryWithTitle:self.textField.text text:self.textView.text date:dateString];
     }
     else
     {
-        [[ESEntryController sharedInstance] replaceEntry:self.dictionary withEntry:newSaveDictionary];
+        self.entry.title = self.textField.text;
+        self.entry.text = self.textView.text;
+        self.entry.date = dateString;
+        [[ESEntryController sharedInstance] synchronize];
     }
     
     self.savedDateLabel.text = [@"Date Last Saved: " stringByAppendingString:dateString];

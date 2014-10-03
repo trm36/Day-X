@@ -75,7 +75,7 @@
     
     DetailViewController *detailVC = [DetailViewController new];
 
-    detailVC.dictionary = [ESEntryController sharedInstance].entries[indexPath.row];
+    detailVC.entry = [ESEntryController sharedInstance].entries[indexPath.row];
     
     [self.navigationController pushViewController:detailVC animated:YES];
     

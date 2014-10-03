@@ -13,6 +13,10 @@
 		3464EC7D19C9228800A8D893 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3464EC7B19C9228800A8D893 /* DetailViewController.m */; };
 		3464EC7E19C9228800A8D893 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3464EC7C19C9228800A8D893 /* DetailViewController.xib */; };
 		3464EC8519CA852000A8D893 /* clearIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3464EC8419CA852000A8D893 /* clearIcon.png */; };
+		34D767F419DE26E700F3CC60 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D767F319DE26E700F3CC60 /* CoreData.framework */; };
+		34D767F719DE27E000F3CC60 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34D767F519DE27E000F3CC60 /* Model.xcdatamodeld */; };
+		34D767FA19DE2AAD00F3CC60 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D767F919DE2AAD00F3CC60 /* Entry.m */; };
+		34D767FE19DE330200F3CC60 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D767FD19DE330200F3CC60 /* Stack.m */; };
 		711A506A19388095005642EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506919388095005642EF /* Foundation.framework */; };
 		711A506C19388095005642EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506B19388095005642EF /* CoreGraphics.framework */; };
 		711A506E19388095005642EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506D19388095005642EF /* UIKit.framework */; };
@@ -48,6 +52,12 @@
 		3464EC7B19C9228800A8D893 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		3464EC7C19C9228800A8D893 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3464EC8419CA852000A8D893 /* clearIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearIcon.png; sourceTree = "<group>"; };
+		34D767F319DE26E700F3CC60 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		34D767F619DE27E000F3CC60 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		34D767F819DE2AAD00F3CC60 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		34D767F919DE2AAD00F3CC60 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		34D767FC19DE330200F3CC60 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		34D767FD19DE330200F3CC60 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		711A506619388095005642EF /* DayX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711A506919388095005642EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		711A506B19388095005642EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D767F419DE26E700F3CC60 /* CoreData.framework in Frameworks */,
 				711A506C19388095005642EF /* CoreGraphics.framework in Frameworks */,
 				711A506E19388095005642EF /* UIKit.framework in Frameworks */,
 				711A506A19388095005642EF /* Foundation.framework in Frameworks */,
@@ -90,6 +101,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34D767FB19DE2B2A00F3CC60 /* CoreData Model */ = {
+			isa = PBXGroup;
+			children = (
+				34D767F519DE27E000F3CC60 /* Model.xcdatamodeld */,
+				34D767FC19DE330200F3CC60 /* Stack.h */,
+				34D767FD19DE330200F3CC60 /* Stack.m */,
+				34D767F819DE2AAD00F3CC60 /* Entry.h */,
+				34D767F919DE2AAD00F3CC60 /* Entry.m */,
+			);
+			name = "CoreData Model";
+			sourceTree = "<group>";
+		};
 		711A505D19388095005642EF = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +135,7 @@
 		711A506819388095005642EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34D767F319DE26E700F3CC60 /* CoreData.framework */,
 				711A506919388095005642EF /* Foundation.framework */,
 				711A506B19388095005642EF /* CoreGraphics.framework */,
 				711A506D19388095005642EF /* UIKit.framework */,
@@ -148,6 +172,7 @@
 				711A507219388095005642EF /* InfoPlist.strings */,
 				711A507519388095005642EF /* main.m */,
 				711A507719388095005642EF /* DayX-Prefix.pch */,
+				34D767FB19DE2B2A00F3CC60 /* CoreData Model */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -268,9 +293,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D767FE19DE330200F3CC60 /* Stack.m in Sources */,
 				344AFD7619CBC8A600ED36BC /* ESEntryController.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,
 				711A507619388095005642EF /* main.m in Sources */,
+				34D767F719DE27E000F3CC60 /* Model.xcdatamodeld in Sources */,
+				34D767FA19DE2AAD00F3CC60 /* Entry.m in Sources */,
 				344AFD7919CBC8F600ED36BC /* DXListViewController.m in Sources */,
 				344AFD7C19CBC96300ED36BC /* DXListTableViewDataSource.m in Sources */,
 				3464EC7D19C9228800A8D893 /* DetailViewController.m in Sources */,
@@ -482,6 +510,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		34D767F519DE27E000F3CC60 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				34D767F619DE27E000F3CC60 /* Model.xcdatamodel */,
+			);
+			currentVersion = 34D767F619DE27E000F3CC60 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 711A505E19388095005642EF /* Project object */;
 }

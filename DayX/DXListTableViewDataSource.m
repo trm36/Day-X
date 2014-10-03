@@ -34,21 +34,21 @@ static NSString *CELL = @"cell";
     
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CELL];
     
-    NSDictionary *dict = [ESEntryController sharedInstance].entries[indexPath.row];
+    Entry *entry = [ESEntryController sharedInstance].entries[indexPath.row];
     
     //Check if string is empty or only has white space
-    if ([[dict[ideaTitleKey] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
+    if ([[entry.title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
     {
         cell.textLabel.text = @"(blank)";
         cell.textLabel.textColor = [UIColor grayColor];
     }
     else
     {
-        cell.textLabel.text = dict[ideaTitleKey];
+        cell.textLabel.text = entry.title;
         cell.textLabel.textColor = [UIColor blackColor];
     }
     
-    cell.detailTextLabel.text = dict[ideaDescriptionKey];
+    cell.detailTextLabel.text = entry.text;
     cell.detailTextLabel.textColor = [UIColor grayColor];
     UIFontDescriptor *fontDescriptor = [cell.detailTextLabel.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitItalic];
     //Size 0 keeps size as is
