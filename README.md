@@ -136,7 +136,7 @@ Review principles of the UITableView datasource and delegate and the UITextField
 - And ```self.entry``` to the array
 - Call ```[Entry storeEntriesInDefaults:self.entry]``` and pass in self.entry
 - ```Pop``` the viewController
-- 
+
 ###Step 18: Remove code
 - Remove ```NSDictionary *entryDictionary = [[NSUserDefaults standardUserDefaults] objectForKey:entryKey]; [self updateViewWithDictionary:entryDictionary];``` from your ```DetailViewController``` ```viewDidLoad``` method
 - Remove the call to ```save``` in the ```textFieldDidEndEditing:``` and ```textViewDidEndEditing```
